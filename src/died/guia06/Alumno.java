@@ -29,6 +29,10 @@ public class Alumno extends Comparable<Alumno>{
 		return aprobados;
 	}
 
+	public Integer getNroLibreta() {
+		return nroLibreta;
+	}
+
 	public int creditosObtenidos() {
 		return 1;
 	}
@@ -51,6 +55,9 @@ public class Alumno extends Comparable<Alumno>{
 		return (int) (this.nombre.compareTo(a.getNombre()));
 	}
 
-
+	@Override
+	public String toString(){
+		return this.nroLibreta + "  " + this.nombre;
+	}
 
 }

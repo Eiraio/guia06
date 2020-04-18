@@ -2,6 +2,8 @@ package died.guia06;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import died.guia06.util.Registro;
@@ -68,11 +70,59 @@ public class Curso {
     /**
      * imprime los inscriptos en orden alfabetico
      */
-    public void imprimirInscriptos() {
+    public void imprimirInscriptosAlfabeticamente() {
         try {
             log.registrar(this, "imprimir listado", this.inscriptos.size() + " registros ");
         } catch (IOException){
             System.out.println("Error en el registro");
+        }
+        Collections.sort(this.inscriptos);
+        for(int i=0; i<this.inscriptos.size(); i++) {
+            System.out.println(this.inscriptos.get(i).toString());
+        }
+
+    }
+    /**
+     * imprime los inscriptos por número de libreta
+     */
+    public void imprimirInscriptosNroLibreta() {
+        try {
+            log.registrar(this, "imprimir listado", this.inscriptos.size() + " registros ");
+        } catch (IOException){
+            System.out.println("Error en el registro");
+        }
+        Collections.sort(this.inscriptos,
+                new Comparator<Alumno>() {
+                    @Override
+                    public int compare(Alumno alumno1, Alumno alumno2) {
+                        return alumno2.getNroLibreta() - (alumno1.getNroLibreta());
+                    }
+                }
+        );
+        for(int i=0; i<this.inscriptos.size(); i++) {
+            System.out.println(this.inscriptos.get(i).toString());
+        }
+    }
+
+    /**
+     * imprime los inscriptos por cantidad de créditos obtenidos
+     */
+    public void imprimirInscriptosCreditos() {
+        try {
+            log.registrar(this, "imprimir listado", this.inscriptos.size() + " registros ");
+        } catch (IOException){
+            System.out.println("Error en el registro");
+        }
+        Collections.sort(this.inscriptos,
+                new Comparator<Alumno>() {
+                    @Override
+                    public int compare(Alumno alumno1, Alumno alumno2) {
+                        return alumno2.creditosObtenidos() - (alumno1.creditosObtenidos());
+                    }
+                }
+        );
+        for(int i=0; i<this.inscriptos.size(); i++) {
+            System.out.println(this.inscriptos.get(i).toString());
         }
     }
 
