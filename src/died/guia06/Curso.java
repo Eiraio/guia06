@@ -44,6 +44,26 @@ public class Curso {
         this.creditosRequeridos = creditosRequeridos;
     }
 
+    public Integer getCupo() {
+        return cupo;
+    }
+
+    public List<Alumno> getInscriptos() {
+        return inscriptos;
+    }
+
+    public Integer getCreditos() {
+        return creditos;
+    }
+
+    public Integer getCreditosRequeridos() {
+        return creditosRequeridos;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
     /**
      * Este método, verifica si el alumno se puede inscribir y si es así lo agrega al curso,
      * agrega el curso a la lista de cursos en los que está inscripto el alumno y retorna verdadero.

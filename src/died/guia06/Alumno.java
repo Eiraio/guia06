@@ -34,15 +34,29 @@ public class Alumno extends Comparable<Alumno>{
 	}
 
 	public int creditosObtenidos() {
-		return 1;
+		int aux = 0;
+		for(int i=0; i< this.aprobados.size(); i++){
+			aux += this.aprobados.get(i).getCreditos();
+		}
+		return aux;
 	}
 
 	public void aprobar(Curso c) {
-		//
+		for(int i=0; i < this.cursando.size(); i++){
+			if( c == this.cursando.get(i)){
+				this.cursando.remove(i);
+				break;
+			}
+		}
+		this.aprobados.add(c);
 	}
 
 	public void inscripcionAceptada(Curso c) {
-		//
+		if(c.inscribir(this)){
+			System.out.println("El alumno " + this.nombre + " se ha inscripto con éxito al curso " + c.getNombre());
+		}else {
+			System.out.println("El alumno " + this.nombre + " no se ha podido inscribir al curso " + c.getNombre());
+		}
 	}
 
 	public Boolean equals(Alumno alumno){
