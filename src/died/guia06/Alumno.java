@@ -3,7 +3,7 @@ package died.guia06;
 import java.util.List;
 
 
-public class Alumno extends Comparable<Alumno>{
+public class Alumno implements Comparable<Alumno> {
 
 	private String nombre;
 	private Integer nroLibreta;

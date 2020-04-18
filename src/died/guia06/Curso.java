@@ -42,6 +42,7 @@ public class Curso {
         this.inscriptos = inscriptos;
         this.creditos = creditos;
         this.creditosRequeridos = creditosRequeridos;
+        this.log = new Registro();
     }
 
     public Integer getCupo() {
@@ -80,7 +81,7 @@ public class Curso {
     public Boolean inscribir(Alumno a) {
         try{
             log.registrar(this, "inscribir ",a.toString());
-        } catch (IOException){
+        } catch (IOException e){
             System.out.println("Error en el log al inscribir");
         }
         if(a.creditosObtenidos() >= this.creditosRequeridos && this.inscriptos.size() < this.cupo && a.getCursando().size() < 3){
@@ -99,7 +100,7 @@ public class Curso {
     public void imprimirInscriptosAlfabeticamente() {
         try {
             log.registrar(this, "imprimir listado", this.inscriptos.size() + " registros ");
-        } catch (IOException){
+        } catch (IOException e){
             System.out.println("Error en el registro");
         }
         Collections.sort(this.inscriptos);
@@ -114,7 +115,7 @@ public class Curso {
     public void imprimirInscriptosNroLibreta() {
         try {
             log.registrar(this, "imprimir listado", this.inscriptos.size() + " registros ");
-        } catch (IOException){
+        } catch (IOException e){
             System.out.println("Error en el registro");
         }
         Collections.sort(this.inscriptos,
@@ -136,7 +137,7 @@ public class Curso {
     public void imprimirInscriptosCreditos() {
         try {
             log.registrar(this, "imprimir listado", this.inscriptos.size() + " registros ");
-        } catch (IOException){
+        } catch (IOException e){
             System.out.println("Error en el registro");
         }
         Collections.sort(this.inscriptos,
