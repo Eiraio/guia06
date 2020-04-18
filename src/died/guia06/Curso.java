@@ -32,6 +32,15 @@ public class Curso {
         this.log = new Registro();
     }
 
+    public Curso(Integer id, String nombre, Integer cicloLectivo, Integer cupo, List<Alumno> inscriptos, Integer creditos, Integer creditosRequeridos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.cicloLectivo = cicloLectivo;
+        this.cupo = cupo;
+        this.inscriptos = inscriptos;
+        this.creditos = creditos;
+        this.creditosRequeridos = creditosRequeridos;
+    }
 
     /**
      * Este método, verifica si el alumno se puede inscribir y si es así lo agrega al curso,

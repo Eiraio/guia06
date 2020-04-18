@@ -10,8 +10,23 @@ public class Alumno extends Comparable<Alumno>{
 	private List<Curso> cursando;
 	private List<Curso> aprobados;
 
+	public Alumno(String nombre, Integer nroLibreta, List<Curso> cursando, List<Curso> aprobados) {
+		this.nombre = nombre;
+		this.nroLibreta = nroLibreta;
+		this.cursando = cursando;
+		this.aprobados = aprobados;
+	}
+
 	public String getNombre() {
 		return nombre;
+	}
+
+	public List<Curso> getCursando() {
+		return cursando;
+	}
+
+	public List<Curso> getAprobados() {
+		return aprobados;
 	}
 
 	public int creditosObtenidos() {
