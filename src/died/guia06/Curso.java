@@ -83,7 +83,13 @@ public class Curso {
         } catch (IOException){
             System.out.println("Error en el log al inscribir");
         }
-        return false;
+        if(a.creditosObtenidos() >= this.creditosRequeridos && this.inscriptos.size() < this.cupo && a.getCursando().size() < 3){
+            this.inscriptos.add(a);
+            a.getCursando().add(this);
+            return true;
+        }else {
+            return false;
+        }
     }
 
 
