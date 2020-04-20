@@ -1,5 +1,9 @@
 package died.guia06;
 
+import died.guia06.excepciones.AlumnoSobrecargadoException;
+import died.guia06.excepciones.CreditosInsuficientesException;
+import died.guia06.excepciones.CupoCompletoException;
+
 public class App {
 
 	public static void main(String[] args) {
@@ -34,7 +38,21 @@ public class App {
 		System.out.println("");
 		for(int i=0; i < 4; i++){
 			for(int j=0; j < 4; j++){
-				alumnos[j].inscripcionAceptada(cursos[i]);
+				try {
+					cursos[i].inscribirAlumno(alumnos[j]);
+				}
+				catch(AlumnoSobrecargadoException e){
+					System.out.println(e.getMessage());
+				}
+				catch (CreditosInsuficientesException e){
+					System.out.println(e.getMessage());
+				}
+				catch(CupoCompletoException e){
+					System.out.println(e.getMessage());
+				}
+				catch (Exception e){
+					System.out.println("Tiró una excepción que no me esperaba");
+				}
 			}
 			System.out.println("");
 		}
@@ -75,7 +93,21 @@ public class App {
 		System.out.println("Inscribiendo a los alumnos a los cursos del segundo cuatrimestre:");
 		for(int i=4; i < 8; i++){
 			for(int j=0; j < 4; j++){
-				alumnos[j].inscripcionAceptada(cursos[i]);
+				try {
+					cursos[i].inscribirAlumno(alumnos[j]);
+				}
+				catch(AlumnoSobrecargadoException e){
+					System.out.println(e.getMessage());
+				}
+				catch (CreditosInsuficientesException e){
+					System.out.println(e.getMessage());
+				}
+				catch(CupoCompletoException e){
+					System.out.println(e.getMessage());
+				}
+				catch (Exception e){
+					System.out.println("Tiró una excepción que no me esperaba");
+				}
 			}
 			System.out.println("");
 		}

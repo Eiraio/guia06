@@ -121,6 +121,7 @@ public class Curso {
                 } else {
                     this.inscriptos.add(a);
                     a.getCursando().add(this);
+                    System.out.println("El alumno " + a.getNombre() + " se ha inscripto con éxito al curso " + this.nombre);
                     try{
                         log.registrar(this, "inscribir ",a.toString());
                     } catch (IOException e){
