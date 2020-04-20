@@ -1,5 +1,8 @@
 package died.guia06;
 
+import died.guia06.excepciones.AlumnoSobrecargadoException;
+import died.guia06.excepciones.CreditosInsuficientesException;
+import died.guia06.excepciones.CupoCompletoException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -83,5 +86,101 @@ class CursoTest {
         matematica.inscribir(alumno2);
 
         matematica.imprimirInscriptosCreditos();
+    }
+
+    @Test
+    void inscribirAlumnoAceptadoTest(){
+        Alumno alumno = new Alumno("Facundo", 1234,vacia, llena);
+        Curso lengua = new Curso(4,"Lengua",2,3,vaciaAlumnos,10,0);
+        try{
+            lengua.inscribirAlumno(alumno);
+        }
+        catch(AlumnoSobrecargadoException e){
+            System.out.println(e.getMessage());
+        }
+        catch (CreditosInsuficientesException e){
+            System.out.println(e.getMessage());
+        }
+        catch(CupoCompletoException e){
+            System.out.println(e.getMessage());
+        }
+        catch (Exception e){
+            System.out.println("Tiró una excepción que no me esperaba");
+        }
+        assertTrue(lengua.getInscriptos().contains(alumno) && alumno.getCursando().contains(lengua));
+    }
+
+    @Test
+    void inscribirAlumnoRechazadoPorCreditosTest(){
+        Alumno alumno = new Alumno("Facundo", 1234,vacia, llena);
+        Curso lengua = new Curso(4,"Lengua",2,3,vaciaAlumnos,10,50);
+        try{
+            lengua.inscribirAlumno(alumno);
+        }
+        catch(AlumnoSobrecargadoException e){
+            System.out.println(e.getMessage());
+        }
+        catch (CreditosInsuficientesException e){
+            System.out.println(e.getMessage());
+        }
+        catch(CupoCompletoException e){
+            System.out.println(e.getMessage());
+        }
+        catch (Exception e){
+            System.out.println("Tiró una excepción que no me esperaba");
+        }
+        assertFalse(lengua.getInscriptos().contains(alumno) || alumno.getCursando().contains(lengua));
+    }
+
+    @Test
+    void inscribirAlumnoRechazadoPorCupoTest(){
+        Alumno alumno = new Alumno("Facundo", 1234,vacia, llena);
+        vaciaAlumnos.add(new Alumno("Pepe",02));
+        vaciaAlumnos.add(new Alumno("Juan",03));
+        vaciaAlumnos.add(new Alumno("Gorge",04));
+        Curso lengua = new Curso(4,"Lengua",2,3,vaciaAlumnos,10,0);
+        try{
+            lengua.inscribirAlumno(alumno);
+        }
+        catch(AlumnoSobrecargadoException e){
+            System.out.println(e.getMessage());
+        }
+        catch (CreditosInsuficientesException e){
+            System.out.println(e.getMessage());
+        }
+        catch(CupoCompletoException e){
+            System.out.println(e.getMessage());
+        }
+        catch (Exception e){
+            System.out.println("Tiró una excepción que no me esperaba");
+        }
+        assertFalse(lengua.getInscriptos().contains(alumno) || alumno.getCursando().contains(lengua));
+    }
+
+    @Test
+    void inscribirAlumnoRechazadoPorSobrecargaTest(){
+        Curso arte = new Curso(4,"Lengua",2,3,vaciaAlumnos,10,0);
+        Curso ciencias = new Curso(5,"Ciencias",2,3,vaciaAlumnos,30,0);
+        llena.add(arte);
+        llena.add(ciencias);
+        llena.add(matematica);
+        Alumno alumno = new Alumno("Facundo", 1234,llena, vacia);
+        Curso lengua = new Curso(4,"Lengua",2,3,vaciaAlumnos,10,0);
+        try{
+            lengua.inscribirAlumno(alumno);
+        }
+        catch(AlumnoSobrecargadoException e){
+            System.out.println(e.getMessage());
+        }
+        catch (CreditosInsuficientesException e){
+            System.out.println(e.getMessage());
+        }
+        catch(CupoCompletoException e){
+            System.out.println(e.getMessage());
+        }
+        catch (Exception e){
+            System.out.println("Tiró una excepción que no me esperaba");
+        }
+        assertFalse(lengua.getInscriptos().contains(alumno) || alumno.getCursando().contains(lengua));
     }
 }
