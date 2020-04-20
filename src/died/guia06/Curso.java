@@ -6,6 +6,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+
+import died.guia06.excepciones.AlumnoSobrecargadoException;
+import died.guia06.excepciones.CreditosInsuficientesException;
+import died.guia06.excepciones.CupoCompletoException;
+import died.guia06.excepciones.RegistroAuditoriaException;
 import died.guia06.util.Registro;
 
 /**
@@ -89,17 +94,40 @@ public class Curso {
      * @return
      */
     public Boolean inscribir(Alumno a) {
-        try{
-            log.registrar(this, "inscribir ",a.toString());
-        } catch (IOException e){
-            System.out.println("Error en el log al inscribir");
-        }
         if(a.creditosObtenidos() >= this.creditosRequeridos && this.inscriptos.size() < this.cupo && a.getCursando().size() < 3){
             this.inscriptos.add(a);
             a.getCursando().add(this);
+            try{
+                log.registrar(this, "inscribir ",a.toString());
+            } catch (IOException e){
+                System.out.println("Error en el log al inscribir");
+            }
             return true;
         }else {
             return false;
+        }
+    }
+
+
+    public void inscribirAlumno(Alumno a) throws Exception{
+        if(a.creditosObtenidos() < this.creditosRequeridos){
+            throw new CreditosInsuficientesException();
+        } else{
+            if(this.inscriptos.size() == this.cupo){
+                throw new CupoCompletoException();
+            } else {
+                if(a.getCursando().size() ==3){
+                    throw new AlumnoSobrecargadoException();
+                } else {
+                    this.inscriptos.add(a);
+                    a.getCursando().add(this);
+                    try{
+                        log.registrar(this, "inscribir ",a.toString());
+                    } catch (IOException e){
+                        throw new RegistroAuditoriaException();
+                    }
+                }
+            }
         }
     }
 
