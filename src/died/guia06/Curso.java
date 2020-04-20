@@ -34,6 +34,16 @@ public class Curso {
         this.log = new Registro();
     }
 
+    public Curso(Integer id, String nombre, Integer cupo, Integer creditos, Integer creditosRequeridos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.cupo = cupo;
+        this.inscriptos = new ArrayList<>();
+        this.creditos = creditos;
+        this.creditosRequeridos = creditosRequeridos;
+        this.log = new Registro();
+    }
+
     public Curso(Integer id, String nombre, Integer cicloLectivo, Integer cupo, List<Alumno> inscriptos, Integer creditos, Integer creditosRequeridos) {
         this.id = id;
         this.nombre = nombre;
