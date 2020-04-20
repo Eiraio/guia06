@@ -122,7 +122,7 @@ public class Curso {
                 new Comparator<Alumno>() {
                     @Override
                     public int compare(Alumno alumno1, Alumno alumno2) {
-                        return alumno2.getNroLibreta() - (alumno1.getNroLibreta());
+                        return alumno1.getNroLibreta() - (alumno2.getNroLibreta());
                     }
                 }
         );
@@ -137,18 +137,20 @@ public class Curso {
     public void imprimirInscriptosCreditos() {
         try {
             log.registrar(this, "imprimir listado", this.inscriptos.size() + " registros ");
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Error en el registro");
         }
         Collections.sort(this.inscriptos,
                 new Comparator<Alumno>() {
                     @Override
                     public int compare(Alumno alumno1, Alumno alumno2) {
-                        return alumno2.creditosObtenidos() - (alumno1.creditosObtenidos());
+                        Integer creditosA1 = alumno1.creditosObtenidos();
+                        Integer creditosA2 = alumno2.creditosObtenidos();
+                        return creditosA1.compareTo(creditosA2);
                     }
                 }
         );
-        for(int i=0; i<this.inscriptos.size(); i++) {
+        for (int i = 0; i < this.inscriptos.size(); i++) {
             System.out.println(this.inscriptos.get(i).toString());
         }
     }

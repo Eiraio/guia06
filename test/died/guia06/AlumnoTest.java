@@ -23,7 +23,7 @@ class AlumnoTest {
 		Alumno alumno = new Alumno("Manuel", 1234,vacia, llena);
 		Integer obtenido = alumno.creditosObtenidos();
 		Integer esperado = 20;
-		assertEquals(obtenido,esperado);
+		assertEquals(esperado,obtenido);
 	}
 
 	@Test
